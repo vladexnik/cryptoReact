@@ -1,6 +1,9 @@
-import {Layout, Select, Space, Button} from "antd";
+import {Layout, Select, Space, Button, Modal, Drawer} from "antd";
 import { useContext, useEffect, useState } from "react";
 import CryptoContext from "../../context/cryptoContext";
+import CoinModal from "../CoinModal";
+import AddAssetForm from "../AddAssetForm";
+
 
 
 const headerStyle = {
@@ -17,16 +20,19 @@ const headerStyle = {
 
 export default function AppHeader(){
 
-   
+    const [modal,setModal]=useState(false);
     const [select,setSelect]=useState(false);
+    const [coin, setCoin]=useState(null);
+    const [drawer, setDrawer]=useState(false);
+
+
     const { crypto }=useContext(CryptoContext);
 
     useEffect(()=>{
 
         const keypress=(event)=>{
             if(event.key === "/") {
-                setSelect(prev=> !prev)
-        
+                setSelect(prev=> !prev)     
             }
         }
         
@@ -35,14 +41,15 @@ export default function AppHeader(){
 
     },[])
 
-        function handleSelect(value){
-            console.log(value);
-        }
-
+    function handleSelect(value){
+        console.log(value);
+        setCoin(crypto.find((c)=> c.id===value));
+        setModal(true);
+    }
+        
     return(
         <Layout.Header style={headerStyle}>
             <Select
-                
                 style={{
                 width: '250px',
                 }}
@@ -62,7 +69,21 @@ export default function AppHeader(){
                 </Space>
                 )}
             />
-            <Button type="primary">Add asset</Button>
+            <Button type="primary" onClick={()=> setDrawer(true)}>Add asset</Button>
+            
+            <Modal 
+                title="Currency" 
+                open={modal} 
+                onCancel={()=> setModal(false)}
+                footer={null}
+            >
+                <CoinModal coin={coin}/>
+            </Modal>
+
+            <Drawer width={600} title="Add asset" onClose={()=> setDrawer(false)} open={drawer} destroyOnClose>
+                <AddAssetForm onClose={()=> setDrawer(false)}/>
+            </Drawer>
+
         
         </Layout.Header>
     )
