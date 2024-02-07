@@ -1,7 +1,5 @@
-import {Flex,Typography, Tag, Divider} from 'antd';
+import {Typography, Tag, Divider} from 'antd';
 import CoinInfo from './CoinInfo';
-
-
 
 export default function CoinModal({coin}){
     console.log(coin);

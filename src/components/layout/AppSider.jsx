@@ -3,6 +3,7 @@ import { ArrowDownOutlined, ArrowUpOutlined } from '@ant-design/icons';
 import { capitalize} from '../../../src/utils'
 import { useContext } from "react";
 import  CryptoContext  from "../../context/cryptoContext";
+import { nanoid } from 'nanoid'
 
 const siderStyle = {
     padding: '1rem',
@@ -18,7 +19,7 @@ export default function AppSider(){
     return(
         <Layout.Sider width="25%" style={siderStyle}>
             {assets.map((asset)=>(
-                <Card key={asset.id} style={{marginBottom: '1rem' }}
+                <Card key={nanoid()} style={{marginBottom: '1rem' }}
                 >
                     <Statistic
                         title={capitalize(asset.id)}

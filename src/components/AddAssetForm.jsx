@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { useContext, useState, useRef } from "react"
 import { Select, Space, Typography, Flex, Divider, Form, Input, InputNumber, Button, DatePicker,Result } from "antd";
 import CryptoContext from "../context/cryptoContext";
 import CoinInfo from './CoinInfo';
@@ -19,10 +19,11 @@ export default function AddAssetForm({onClose}){
 
     const [form]=Form.useForm(); // for amount field to make total
 
-    const {crypto}=useContext(CryptoContext);
+    const {crypto, addAsset}=useContext(CryptoContext);
 
     const [coin,setCoin]=useState(null);
     const [submitted,setSubmitted]=useState(false);
+    const assetRef=useRef(); 
 
     function selectCoin(selected){
          setCoin(crypto.find(coin=> coin.id===selected));    
@@ -33,9 +34,9 @@ export default function AddAssetForm({onClose}){
             <Result
                 status="success"
                 title="New Asset Added"
-                subTitle={`Added ${33} of ${coin.name} by price ${23}`}
+                subTitle={`Added ${assetRef.current.amount} of ${coin.name} by price ${assetRef.current.price}`}
                 extra={[    
-                    <Button type="primary" key="console" onClick={onClose}>
+                    <Button type="primary" key="console1" onClick={onClose}>
                         Close
                     </Button>,
                    
@@ -69,8 +70,19 @@ export default function AddAssetForm({onClose}){
     }
 
     function onFinish(values){
+        const newAsset={
+            id: coin.id,
+            amount: values.amount,
+            price: values.price,
+            date: values.date?.$d ?? new Date(),
+        }
+
         console.log('finish', values);
+        assetRef.current=newAsset;
+        addAsset(newAsset);
+
         setSubmitted(true)
+        
     }
 
     function handleAmountChange(value){
