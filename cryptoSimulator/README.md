@@ -1,8 +1,51 @@
-# React + Vite
+# cryptoSimulator (https://shielded-lowlands-18990-7dd700f74992.herokuapp.com/)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The project was made for simulating crypto transfers, showing the ability of profit or deficit.
 
-Currently, two official plugins are available:
+## Content
+- [Deploy](#deploy)
+- [Technologies](#technologies)
+- [How to run the application](#installation)
+- [Possibilities](#possibilities)
+- [Creators](#creators)
+- [Sources](#sources)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Deploy
+https://shielded-lowlands-18990-7dd700f74992.herokuapp.com/
+
+## Technologies
+- React
+- Ant Design
+- Node JS
+  
+## Installation
+
+Install npm-packages with next commands:
+```sh
+$ npm install
+```
+
+To run the app enter command below::
+```sh
+$ npm run dev
+```
+
+To make the build of app run next command:
+```sh
+$ npm run build
+```
+
+## Possibilities
+
+Fetching the actual data of cryptocurrencies from api. 
+Adding crypto-assets to your portfolio by current price and calculating, research of profit.
+Selling crypto-assets by current price to be able to make profit.
+
+
+## Creators
+
+- [Nikityuk Vlad]: https://t.me/Slev222 — Front-End Engineer
+
+## Sources
+
+youtube courses
