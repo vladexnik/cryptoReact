@@ -12,7 +12,7 @@ export const cryptoAssets = [
     amount: 0.0005,
     price: 4100,
     date: new Date(),
-    key: 'dfdfefdf'
+    key: 'dfdfefdf2'
   },
 ]
 
